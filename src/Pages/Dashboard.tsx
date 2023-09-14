@@ -18,9 +18,7 @@ const Dashboard: React.FC = () => {
             <div className="card-body">
               <h2 className="card-title">Progress Graph?</h2>
               <p>try to show the progress of the user</p>
-              <div className="card-actions justify-end">
-                <button className="btn btn-primary">Read!</button>
-              </div>
+              
             </div>
           </div>
         </div>

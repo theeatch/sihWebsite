@@ -5,7 +5,8 @@ import { useNavigate } from "react-router-dom";
 const CardHome: React.FC = () => {
   const nav = useNavigate();
 
-  const textinsidecard = "A sample flashcard learning side wala";
+  const textinsidecard = "A sample flashcard with word and the meaning";
+  const cardtitle="Word to Learn";
   return (
     <div className=" flex flex-col xl:flex-row w-full h-screen justify-between bg-[#586F7C] text-white px-36">
       <div className="flex flex-col justify-center h-full max-w-lg gap-8 py-4 my-auto ">
@@ -25,7 +26,7 @@ const CardHome: React.FC = () => {
       </div>
 
       <div className="flex items-center w-auto h-full ">
-        <Card text={textinsidecard} />
+        <Card text={textinsidecard} title={cardtitle}/>
       </div>
     </div>
   );

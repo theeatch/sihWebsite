@@ -53,26 +53,27 @@ const CardActivity: React.FC<Props> = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center w-screen h-screen pt-24">
+    <div className="flex flex-col items-center justify-center w-full h-screen pt-24">
       <div className="flex flex-col items-center justify-center pb-20 w-[40rem] h-full gap-5">
-        <div className="relative w-full bg-white h-[40rem] rounded-2xl flex flex-col justify-between">
+        <div className="relative w-full bg-white h-[38rem] rounded-2xl flex flex-col justify-between">
           <button onClick={toggleSpeed} className="absolute z-10 w-10 h-10 text-white bg-gray-500 rounded-lg top-5 right-5">{speed}x</button>
           <img src={currentImage} alt="" />
-          <audio id="audio" onPlay={() => startAnimation()} controls src={audioUrl}>
+          <audio className="z-30 absolute bottom-0 border-2 border-gray-300" 
+          id="audio" onPlay={() => startAnimation()} controls src={audioUrl}>
             hello
           </audio>
         </div>
         <div className="flex flex-row justify-between w-full">
-          <button className="px-16 py-4 text-white bg-orange-600 h-14 rounded-l-2xl">
+          <button className="px-16 py-2 text-white bg-orange-600 h-14 rounded-l-2xl">
             <span>Prev</span>
           </button>
-          <button className="px-16 py-4 text-white bg-orange-600 h-14 rounded-r-2xl">
+          <button className="px-16 py-2 text-white bg-orange-600 h-14 rounded-r-2xl">
             <span>Next</span>
           </button>
         </div>
         <button
           onClick={() => getAudio("hello")}
-          className="px-20 py-5 text-white bg-gray-700 rounded-2xl"
+          className="px-20 py-2 text-white bg-gray-700 rounded-2xl"
         >
           Flip
         </button>

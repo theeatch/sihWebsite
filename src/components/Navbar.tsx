@@ -41,9 +41,9 @@ const Navbar: React.FC = () => {
           <li>
             {/* Render "Profile" or "Sign Up" based on user authentication */}
             {user ? (
-              <a href="/">Home</a>
+              <a href="/Dashboard">Profile</a>
             ) : (
-              <a href="/Login">Home</a>
+              <a href="/Login">Profile</a>
             )}
             
           </li>
