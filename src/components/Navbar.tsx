@@ -1,9 +1,28 @@
 import React, { useState } from "react";
+import { useEffect } from "react";
+import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
+import { User } from "firebase/auth";
+
 
 const Navbar: React.FC = () => {
   const [languageSelected, setLanguageSelected] = useState("English");
   const englishHref = "/english-url"; // Replace with the actual English URL
   const hindiHref = "/hindi-url"; // Replace with the actual Hindi URL
+  const auth = getAuth();
+  const [user, setUser] = useState<User | null>(null); 
+  useEffect(() => {
+    const auth = getAuth();
+    // Check user authentication state
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        // User is authenticated, update user state
+        setUser(user);
+      } else {
+        // User is not authenticated, set user state to null
+        setUser(null);
+      }
+    });
+  }, []);
 
   const handleLanguageChange = (language: string) => {
     setLanguageSelected(language);
@@ -43,7 +62,12 @@ const Navbar: React.FC = () => {
             </details>
           </li>
           <li>
-            <a href="/signup-url">Sign Up</a> {/* Replace with the actual Sign Up URL */}
+             {/* Render "Profile" or "Sign Up" based on user authentication */}
+            {user ? (
+              <button onClick={()=> signOut(auth)}>Profile</button>
+            ) : (
+              <a href="/Login">Sign Up</a>
+            )}
           </li>
         </ul>
       </div>

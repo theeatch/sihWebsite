@@ -1,5 +1,29 @@
+import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 
 const Login: React.FC = () => {
+  const auth = getAuth();
+  const navigate = useNavigate();
+  const [authing, setAuthing] = useState(false);
+
+  const signInWithGoogle = async () => {
+    setAuthing(true);
+
+    signInWithPopup(auth, new GoogleAuthProvider())
+      .then((response) => {
+        console.log(response.user.uid);
+        navigate("/Dashboard");
+      }
+      )
+      .catch((error) => {
+        console.log(error);
+        setAuthing(false);
+      }
+      );
+  };
+
   return (
       <div className=" w-full h-screen flex flex-col items-center justify-center text-[#07161a]">
         <div className="mb-10 w-full gap-4 flex flex-col items-start max-w-xs md:max-w-md ">
@@ -70,6 +94,8 @@ const Login: React.FC = () => {
             
           </button>
           <button
+          onClick={()=>signInWithGoogle()}
+          disabled={authing}
             className="flex items-center py-2 px-4 text-sm uppercase rounded bg-white hover:bg-gray-100 text-indigo-500 border border-transparent hover:border-transparent hover:text-gray-700 shadow-md hover:shadow-lg font-medium transition transform hover:-translate-y-0.5"
           >
             <svg
