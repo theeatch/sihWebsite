@@ -39,10 +39,19 @@ const Navbar: React.FC = () => {
       <div className="flex-none ">
         <ul className="menu menu-horizontal gap-6 px-1 bg-none">
           <li>
-            <a href="/">Home</a>
+            {/* Render "Profile" or "Sign Up" based on user authentication */}
+            {user ? (
+              <a href="/Dashboard">Home</a>
+            ) : (
+              <a href="/Login">Home</a>
+            )}
+            
           </li>
           <li>
             <a href="/CardHome">Learning Section</a>
+          </li>
+          <li>
+            <a href="/ActivityHome">Activities</a>
           </li>
           <li>
             <details>
@@ -64,7 +73,7 @@ const Navbar: React.FC = () => {
           <li>
              {/* Render "Profile" or "Sign Up" based on user authentication */}
             {user ? (
-              <button onClick={()=> signOut(auth)}>Profile</button>
+              <button onClick={()=> signOut(auth)}>Sign Out</button>
             ) : (
               <a href="/Login">Sign Up</a>
             )}
