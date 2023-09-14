@@ -9,6 +9,8 @@ import { config } from './config/config';
 import Dashboard from "./Pages/Dashboard";
 import AuthRoute from "./components/AuthRoute";
 import ActivityHome from "./Pages/ActivityHome";
+import ActivitySelect from "./Pages/ActivitySelect";
+import Home from "./Home";
 
 initializeApp(config.firebaseConfig);
 
@@ -22,10 +24,12 @@ const App: React.FunctionComponent<IAppProps> = (props) => {
         <Routes>
           <Route path="/Dashboard" element={<AuthRoute ><Dashboard /> </AuthRoute> }/>
           <Route path="/Login" element={ <Login />} />
-
+          <Route path="/" element={<Home />}/>
           <Route path="/SignUp" element={<SignUp />}/>
           <Route path="/CardHome" element={<CardHome />}/>
           <Route path="/ActivityHome" element={<ActivityHome />}/>
+          <Route path="/ActivitySelect" element={<ActivitySelect />}/>
+
 
         </Routes>
       </BrowserRouter>
