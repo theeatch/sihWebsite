@@ -9,6 +9,7 @@ import { config } from './config/config';
 import Dashboard from "./Pages/Dashboard";
 import AuthRoute from "./components/AuthRoute";
 import ActivityHome from "./Pages/ActivityHome";
+import CardActivity from "./Pages/CardActivity";
 
 initializeApp(config.firebaseConfig);
 
@@ -26,6 +27,7 @@ const App: React.FunctionComponent<IAppProps> = (props) => {
           <Route path="/SignUp" element={<SignUp />}/>
           <Route path="/CardHome" element={<CardHome />}/>
           <Route path="/ActivityHome" element={<ActivityHome />}/>
+          <Route path="/CardActivity" element={<CardActivity />}/>
 
         </Routes>
       </BrowserRouter>
