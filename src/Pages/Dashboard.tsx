@@ -14,13 +14,6 @@ const Dashboard: React.FC = () => {
               </div>
             </div>
           </div>
-          <div className="card w-[440px] h-[280px] bg-base-100 shadow-xl rounded-2xl">
-            <div className="card-body">
-              <h2 className="card-title">Progress Graph?</h2>
-              <p>try to show the progress of the user</p>
-              
-            </div>
-          </div>
         </div>
         <div className="text-3xl text-white bg-[#586F7C] rounded-2xl h-52 w-3/4 text-center p-4">
           Somehow Show Progress Here
