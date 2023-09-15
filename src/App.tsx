@@ -12,6 +12,7 @@ import ActivityHome from "./Pages/ActivityHome";
 import CardActivity from "./Pages/CardActivity";
 import ActivitySelect from "./Pages/ActivitySelect";
 import Home from "./Home";
+import SoundShuffle from "./Pages/SoundShuffle";
 
 initializeApp(config.firebaseConfig);
 
@@ -63,6 +64,14 @@ const App: React.FunctionComponent<IAppProps> = (props) => {
             element={
               <AuthRoute>
                 <ActivitySelect />
+              </AuthRoute>
+            }
+          />
+          <Route
+            path="/SoundShuffle"
+            element={
+              <AuthRoute>
+                <SoundShuffle />
               </AuthRoute>
             }
           />
