@@ -19,11 +19,13 @@ const CardActivity: React.FC<Props> = () => {
   const [audioUrl, setAudioUrl] = useState("");
   const [currentImage, setCurrentImage] = useState<string>();
   const [speed, setSpeed] = useState(2);
-  const [meaning, setMeaning] = useState("A common greeting."); 
+  const [loading, setLoading] = useState(false)
+  // const [meaning, setMeaning] = useState("A common greeting."); 
 
   let timeout: MutableRefObject<NodeJS.Timeout | null> = useRef(null);
 
   const getAudio = async (query: string) => {
+    setLoading(() => true)
     const resp = await axios.get(`http://localhost:3000/google/audio/${query}`);
     const data: AudioResponse = resp.data;
 
@@ -35,7 +37,7 @@ const CardActivity: React.FC<Props> = () => {
     console.log(dresp);
     const meaning = dresp[0]["meanings"][0]["definitions"][0]["definition"]
     console.log(meaning);
-    
+    setLoading(() => false)
   }; 
 
   
@@ -62,6 +64,7 @@ const CardActivity: React.FC<Props> = () => {
     <div className="flex flex-col items-center justify-center w-full h-screen pt-24">
       <div className="flex flex-col items-center justify-center pb-20 w-[40rem] h-full gap-5">
         <div className="relative w-full bg-white h-[38rem] rounded-2xl flex flex-col justify-between">
+        {loading ? <span  className="loading loading-spinner loading-lg absolute"></span>: <span></span>}
           <button
             onClick={toggleSpeed}
             className="absolute z-10 w-10 h-10 text-white bg-gray-500 rounded-lg top-5 right-5"
@@ -81,13 +84,10 @@ const CardActivity: React.FC<Props> = () => {
         </div>
         <div className="flex flex-row justify-between w-full">
           
-          <input value={input} type="text" onChange={(e) => setInput(e.target.value)}/>
+          <input value={input} className="text-center"type="text" onChange={(e) => setInput(e.target.value)}/>
           <button onClick={()=> setInput(() => "")} className="px-16 py-2 text-white bg-orange-600 h-14 rounded-r-2xl">
             <span>Clear</span>
           </button>
-        </div>
-        <div className="absolute mb-10">
-          <h1 className="text-7xl tracking-wide">{input}</h1>
         </div>
         <button
           onClick={() => getAudio(input)}

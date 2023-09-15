@@ -3,8 +3,9 @@ import {
   GoogleAuthProvider,
   signInWithPopup,
   signInWithEmailAndPassword,
+  onAuthStateChanged,
 } from "firebase/auth";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 const Login: React.FC = () => {
@@ -41,6 +42,16 @@ const Login: React.FC = () => {
         setAuthing(false);
       });
   };
+
+  useEffect (() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        navigate("/Dashboard");
+      }
+    });
+    return unsubscribe;
+  }
+  , [auth, navigate]);
 
   return (
     <div className=" w-full h-screen flex flex-col items-center justify-center text-[#07161a]">
